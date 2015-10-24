@@ -1,4 +1,5 @@
 {-# LANGUAGE RecordWildCards #-}
+{-# LANGUAGE DeriveDataTypeable #-}
 
 {- | Write-biased multi-reader lock
 
@@ -16,6 +17,7 @@ module RWLock
 )
 where
 
+import Data.Typeable
 import Control.Monad
 import Control.Exception (Exception)
 import qualified Control.Exception as Exception
@@ -95,6 +97,6 @@ waitLock RWLock{..} = atomically $ do
 
 -- | Unlock requested without prior lock
 data AlreadyUnlocked = AlreadyUnlocked
-  deriving (Show, Eq)
+  deriving (Show, Eq, Typeable)
 
 instance Exception AlreadyUnlocked

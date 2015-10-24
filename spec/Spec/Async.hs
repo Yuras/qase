@@ -1,3 +1,4 @@
+{-# LANGUAGE DeriveDataTypeable #-}
 
 module Spec.Async
 ( spec
@@ -6,6 +7,7 @@ where
 
 import qualified Async
 
+import Data.Typeable
 import Control.Exception (Exception, throwIO, finally)
 import Control.Concurrent
 import Test.Hspec
@@ -42,6 +44,6 @@ childOfSpec = describe "childOf" $ do
       ) `shouldThrow` (== Ex)
 
 data Ex = Ex
-  deriving (Show, Eq)
+  deriving (Show, Eq, Typeable)
 
 instance Exception Ex

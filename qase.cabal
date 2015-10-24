@@ -16,14 +16,14 @@ library
   exposed-modules:     Async
                        WaitGroup
                        RWLock
-  -- other-modules:       
+  other-modules:       Prelude
   -- other-extensions:    
   build-depends:       base
                        , async
                        , stm
                        , stm-chans
                        , io-region
-  hs-source-dirs:      lib
+  hs-source-dirs:      lib, compat
   default-language:    Haskell2010
 
 test-suite spec

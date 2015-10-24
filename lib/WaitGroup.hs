@@ -1,4 +1,5 @@
 {-# LANGUAGE RecordWildCards #-}
+{-# LANGUAGE DeriveDataTypeable #-}
 
 {- | Wait group, aka Asynchronous semaphore
 
@@ -15,6 +16,7 @@ module WaitGroup
 )
 where
 
+import Data.Typeable
 import Control.Monad
 import Control.Exception (Exception)
 import Control.Concurrent.STM
@@ -68,6 +70,6 @@ wait WaitGroup{..} = atomically $ do
 
 -- | Exception occurs when 'done' is called without 'add'
 data AlreadyEmpty = AlreadyEmpty
-  deriving (Show, Eq)
+  deriving (Show, Eq, Typeable)
 
 instance Exception AlreadyEmpty
